@@ -36,9 +36,9 @@ let showStatus = document.querySelector(".showStatus2");
 let bigBubbles = document.querySelector(".bigBubbles");
 
 
-const boys = ["AJ", "Inakwu", "OT Sama", "iam.ryuzaki"];
+const boys = ["AJ", "Inakwu", "OT Sama", "ryuzaki", "PreshJay"];
 
-const girls = ["Hinata", "Rukia", "Rias Senpai", "Nami"];
+const girls = ["Hinata", "Rukia", "Rias Senpai", "Nami", "Marvie"];
 
 window.addEventListener("DOMContentLoaded", function () {
     displayGirls(girls);
