@@ -33,6 +33,7 @@ let girlsList = document.querySelector(".displayGirlsDiv"); //just Ps
 let boysLength = document.querySelector(".boysLength");
 let girlsLength = document.querySelector(".girlsLength");
 let showStatus = document.querySelector(".showStatus2");
+let bigBubbles = document.querySelector(".bigBubbles");
 
 
 const boys = ["AJ", "Inakwu", "OT Sama", "iam.ryuzaki"];
@@ -114,6 +115,7 @@ maleGenderBtn.addEventListener("click", function () {
 
         matchMembers.classList.add("showMatchMembers");
         addNames.classList.add("shiftAdd");
+        bigBubbles.classList.remove("bigBubblesMargin");
     } else {
         setTimeout(function () {
             showStatus.innerHTML = `Not everyone will have a prom partner`;
@@ -125,6 +127,7 @@ maleGenderBtn.addEventListener("click", function () {
         }, 3000);
         matchMembers.classList.remove("showMatchMembers");
         addNames.classList.remove("shiftAdd");
+        bigBubbles.classList.add("bigBubblesMargin");
     }
 
 
@@ -168,6 +171,7 @@ femaleGenderBtn.addEventListener("click", function () {
 
         matchMembers.classList.add("showMatchMembers");
         addNames.classList.add("shiftAdd");
+        bigBubbles.classList.remove("bigBubblesMargin");
     } else {
         setTimeout(function () {
             showStatus.innerHTML = `Not everyone will have a prom partner`;
@@ -179,6 +183,7 @@ femaleGenderBtn.addEventListener("click", function () {
         }, 3000);
         matchMembers.classList.remove("showMatchMembers");
         addNames.classList.remove("shiftAdd");
+        bigBubbles.classList.add("bigBubblesMargin");
     }
 
     textField.value = "";
@@ -227,6 +232,7 @@ function displayBoys(array) {
                 }, 3000);
                 matchMembers.classList.add("showMatchMembers");
                 addNames.classList.add("shiftAdd");
+                bigBubbles.classList.remove("bigBubblesMargin");
             } else {
                 setTimeout(function () {
                     showStatus.innerHTML = `Not everyone will have a prom partner`;
@@ -238,6 +244,7 @@ function displayBoys(array) {
                 }, 3000);
                 matchMembers.classList.remove("showMatchMembers");
                 addNames.classList.remove("shiftAdd");
+                bigBubbles.classList.add("bigBubblesMargin");
             }
 
         });
@@ -279,6 +286,7 @@ function displayGirls(array) {
                 }, 3000);
                 matchMembers.classList.add("showMatchMembers");
                 addNames.classList.add("shiftAdd");
+                bigBubbles.classList.remove("bigBubblesMargin");
             } else {
                 setTimeout(function () {
                     showStatus.innerHTML = `Not everyone will have a prom partner`;
@@ -290,6 +298,7 @@ function displayGirls(array) {
                 }, 3000);
                 matchMembers.classList.remove("showMatchMembers");
                 addNames.classList.remove("shiftAdd");
+                bigBubbles.classList.add("bigBubblesMargin");
             }
 
         });
@@ -312,6 +321,7 @@ matchMembers.addEventListener("click", function () {
         matchMembers.classList.remove("showMatchMembers");
         addNames.classList.add("shiftAdd");
         addNames.classList.remove("shiftAdd");
+        bigBubbles.classList.add("bigBubblesMargin");
     }
 
     displayCurrentMatchUp.innerHTML = `${boys.splice(random(boys), 1)} and ${girls.splice(random(girls), 1)} will go to the prom together`;
