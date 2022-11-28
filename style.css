@@ -591,5 +591,13 @@ color: #141850;
        transition: 1s ease-in;
     }
 
+    .toggle2{
+        position: fixed;
+        top:24px;
+        left: 83%;
+        text-align: center;
+        color: #141850;
+        z-index: 11;
+    }
     
 }
