@@ -201,6 +201,7 @@ color: #141850;
    gap: 40px 80px;
    transform: scale(0);
    transition: ease-in 0.6s; 
+   cursor: unset;
 }
 
 .GenderBtns .Male {
@@ -254,6 +255,7 @@ color: #141850;
     padding: 50px 0;
     gap: 40px 90px;
     margin: -18px 0 0 0;
+    cursor: unset;
 }
 
 .dropShrink{
