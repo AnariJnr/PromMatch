@@ -69,10 +69,11 @@ color: #141850;
     justify-content: space-between;  
 }
 
-.toggle{
+.toggle {
     position: relative;
-    
+    padding: 24px 0 0 0;
 }
+
 .toggle h1{
 font-family: 'Roboto Slab', serif;
 font-weight: 600;
