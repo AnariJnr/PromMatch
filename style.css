@@ -211,6 +211,7 @@ color: #141850;
     background: rgb(56, 73, 105);
     border-radius: 20px;
     margin: -11px 0 0 0;
+    cursor: unset;
 }
 
 .GenderBtns .Female {
@@ -221,6 +222,7 @@ color: #141850;
     background: rgb(56, 73, 105);
     border-radius: 20px;
     margin: -11px 0 0 0;
+    cursor: unset;
 }
 
 .fa-mars{
@@ -610,6 +612,10 @@ color: #141850;
         border-bottom: 2px solid #141850;
         margin: auto;
         width: 35%;
+    }
+
+    .dropShrink{
+        cursor: unset;
     }
     
 }
