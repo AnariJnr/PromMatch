@@ -12,7 +12,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    cursor: unset;
+   
 }
 
 
@@ -340,7 +340,7 @@ color: #141850;
     opacity: 0.9;
 }
 
-.container .dropShrink .content a {
+.container .dropShrink .content button {
     position: relative;
     padding: 9px 10px;
     font-size: 23px;
@@ -353,7 +353,7 @@ color: #141850;
     transition: 0.5%;
 }
 
-.container .dropShrink .content a:hover{
+.container .dropShrink .content button:hover{
     opacity: 1;
 }
 
@@ -438,7 +438,7 @@ color: #141850;
 }
 
 
-.container .drop .content a{
+.container .drop .content button{
   
     position: relative;
     padding: 7px 25px;
@@ -453,7 +453,7 @@ color: #141850;
     
 }
 
-.container .drop .content a:hover{
+.container .drop .content button:hover{
     opacity: 1;
 }
 
@@ -620,4 +620,11 @@ color: #141850;
         cursor: unset;
     }
     
+}
+
+
+/* extra */
+
+.smallBubbles .dropShrink.AddNames .AddNames a{
+    cursor: unset;
 }
