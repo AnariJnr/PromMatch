@@ -36,7 +36,7 @@ let showStatus = document.querySelector(".showStatus2");
 let bigBubbles = document.querySelector(".bigBubbles");
 
 
-const boys = ["AJ", "Inakwu", "OT Sama", "ryuzaki", "PreshJay"];
+const boys = ["AJ", "Inakwu", "OT Sama", "Ryuzaki", "PreshJay"];
 
 const girls = ["Hinata", "Rukia", "Rias Senpai", "Nami", "Marvie"];
 
