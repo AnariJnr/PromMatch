@@ -36,9 +36,9 @@ let showStatus = document.querySelector(".showStatus2");
 let bigBubbles = document.querySelector(".bigBubbles");
 
 
-const boys = ["AJ", "Inakwu", "OT Sama", "Ryuzaki", "PreshJay"];
+const boys = ["Aj", "Inakwu", "Ot", "Ryuzaki", "PreshJay"];
 
-const girls = ["Hinata", "Rukia", "Rias Senpai", "Nami", "Marvie"];
+const girls = ["Hinata", "Rukia", "Rias", "Nami", "Marvie"];
 
 window.addEventListener("DOMContentLoaded", function () {
     displayGirls(girls);
@@ -82,6 +82,20 @@ addNames.addEventListener("click", function () {
 // boys gender btn
 maleGenderBtn.addEventListener("click", function () {
 
+    // check if name exist
+    if (boys.includes(caps(textField.value))) {
+        setTimeout(function () {
+            showStatus.style.visibility = "visible";
+            showStatus.innerHTML = "Name Exist";
+        }, 0);
+
+        setTimeout(function () {
+            showStatus.style.visibility = "hidden";
+        }, 3000);
+        return;
+
+    };
+
     // check if field empty
     if (textField.value === "") {
         setTimeout(function () {
@@ -95,7 +109,7 @@ maleGenderBtn.addEventListener("click", function () {
         return;
     }
 
-    boys.push(textField.value);
+    boys.push(caps(textField.value));
 
     displayBoys(boys);
     // console.log(boys);
@@ -140,6 +154,20 @@ maleGenderBtn.addEventListener("click", function () {
 // girls gender btn
 femaleGenderBtn.addEventListener("click", function () {
 
+    // check if name exist
+    if (girls.includes(caps(textField.value))) {
+        setTimeout(function () {
+            showStatus.style.visibility = "visible";
+            showStatus.innerHTML = "Name Exist";
+        }, 0);
+
+        setTimeout(function () {
+            showStatus.style.visibility = "hidden";
+        }, 3000);
+        return;
+
+    };
+
     // check if field empty
     if (textField.value === "") {
         setTimeout(function () {
@@ -153,7 +181,7 @@ femaleGenderBtn.addEventListener("click", function () {
         return;
     }
 
-    girls.push(textField.value);
+    girls.push(caps(textField.value));
     displayGirls(girls);
     // console.log(boys);
     genderBtns.classList.remove("showGenderBtns");
@@ -347,7 +375,13 @@ function displayHistory(array) {
     displayMatchUpHistory.innerHTML = history;
 }
 
+//function to change string to caps
 
+function caps(string) {
+    // var string = "quincy";
+    return string[0].toUpperCase() + string.slice(1);
+}
 
+caps("eel");
 
 
