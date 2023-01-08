@@ -80,7 +80,7 @@ font-weight: 600;
 color: #141850;
 }
 
-.navigation2{
+.navigation1{
     padding-top: 20px;
     height: 0;
     overflow: hidden;
@@ -628,4 +628,58 @@ color: #141850;
 
 .smallBubbles .dropShrink.AddNames .AddNames a{
     cursor: unset;
+}
+
+.clearGenderGirls{
+  
+    text-transform: capitalize;
+    width: 10rem;
+    height: 1.5rem;
+    display: grid;
+    align-items: center;
+    background: transparent;
+    border-color: transparent;
+    color: var(--clr-red-light);
+    margin: 0 auto;
+    font-size: 1rem;
+    letter-spacing: var(--spacing);
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 1.25rem; 
+    
+}
+
+.clearGenderBoys{
+  
+    text-transform: capitalize;
+    width: 10rem;
+    height: 1.5rem;
+    display: grid;
+    align-items: center;
+    background: transparent;
+    border-color: transparent;
+    color: var(--clr-red-light);
+    margin: 0 auto;
+    font-size: 1rem;
+    letter-spacing: var(--spacing);
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 1.25rem; 
+}
+
+.clearHistory{
+    text-transform: capitalize;
+    width: 10rem;
+    height: 1.5rem;
+    display: grid;
+    align-items: center;
+    background: transparent;
+    border-color: transparent;
+    color: var(--clr-red-light);
+    margin: 0 auto;
+    font-size: 1rem;
+    letter-spacing: var(--spacing);
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 1.25rem; 
 }
