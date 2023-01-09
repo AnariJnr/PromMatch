@@ -7,7 +7,7 @@ let navigation2 = document.querySelector(".navigation2");
 let earlybirds = document.querySelector(".fa-earlybirds");
 let navigation1 = document.querySelector(".navigation1");
 
-
+// navs
 toggle.addEventListener("click", function () {
     circleX.classList.toggle("none");
     bars.classList.toggle("none");
@@ -45,21 +45,22 @@ window.addEventListener("DOMContentLoaded", function () {
     displayHistory(getLocalStorageHistory());
     displayGirls(getLocalStorageGirls());
     displayBoys(getLocalStorageBoys());
-    boysLength.innerHTML = getLocalStorageBoys().length;
-    girlsLength.innerHTML = getLocalStorageGirls().length;
 
-    // check for equality 
-    if (getLocalStorageBoys().length === getLocalStorageGirls().length && getLocalStorageBoys().length > 0 && getLocalStorageGirls().length) {
-
-        matchMembers.classList.add("showMatchMembers");
-        addNames.classList.add("shiftAdd");
-    } else {
-
-        matchMembers.classList.remove("showMatchMembers");
-        addNames.classList.remove("shiftAdd");
+    if(getLocalStorageBoys().length>0 && getLocalStorageBoys().length <9){   
+        boysLength.innerHTML = "0"+ getLocalStorageBoys().length;
+    }else{
+        boysLength.innerHTML = getLocalStorageBoys().length;
     }
 
-   
+    if(getLocalStorageGirls().length>0 && getLocalStorageGirls().length <9){
+        girlsLength.innerHTML = "0" + getLocalStorageGirls().length;
+    }else{
+        girlsLength.innerHTML = getLocalStorageGirls().length;
+    }
+
+    // check for equality 2
+    checkForEquality2(getLocalStorageBoys().length,getLocalStorageGirls().length);
+
     visibility(getLocalStorageBoys(),boysClear);
     visibility(getLocalStorageGirls(),girlsClear);
     visibility(getLocalStorageHistory(),historyClear);
@@ -83,6 +84,8 @@ function timeStatus() {
 
 // test end 
 
+//  ******* Gender Btns funcs *********
+
 // display gender btns
 addNames.addEventListener("click", function () {
     genderBtns.classList.toggle("showGenderBtns");
@@ -91,7 +94,6 @@ addNames.addEventListener("click", function () {
 // boys gender btn
 maleGenderBtn.addEventListener("click", function () {
 
-    
     // check if field empty
     if (textField.value === "") {
         setTimeout(function () {
@@ -119,8 +121,6 @@ maleGenderBtn.addEventListener("click", function () {
 
     };
 
-
-    // boys.push(caps(textField.value));
     addToLocalStorageBoys(caps(textField.value));
 
     displayBoys(getLocalStorageBoys());
@@ -128,42 +128,20 @@ maleGenderBtn.addEventListener("click", function () {
     genderBtns.classList.remove("showGenderBtns");
     visibility(getLocalStorageBoys(),boysClear);
 
-
     // check if the two arrays are equal
-    if (getLocalStorageBoys().length === getLocalStorageGirls().length) {
-        setTimeout(function () {
-            showStatus.innerHTML = `Everyone will have a prom partner`;
-            showStatus.style.visibility = "visible";
-        }, 0);
-
-        setTimeout(function () {
-            showStatus.style.visibility = "hidden";
-        }, 3000);
-
-        matchMembers.classList.add("showMatchMembers");
-        addNames.classList.add("shiftAdd");
-        bigBubbles.classList.remove("bigBubblesMargin");
-    } else {
-        setTimeout(function () {
-            showStatus.innerHTML = `Not everyone will have a prom partner`;
-            showStatus.style.visibility = "visible";
-        }, 0);
-
-        setTimeout(function () {
-            showStatus.style.visibility = "hidden";
-        }, 3000);
-        matchMembers.classList.remove("showMatchMembers");
-        addNames.classList.remove("shiftAdd");
-        bigBubbles.classList.add("bigBubblesMargin");
-    }
-
-
+    checkForEquality(getLocalStorageBoys().length,getLocalStorageGirls().length);
 
     textField.value = "";
     textField.focus();
-    boysLength.innerHTML = getLocalStorageBoys().length;
+
+    if(getLocalStorageBoys().length>0 && getLocalStorageBoys().length <9){   
+        boysLength.innerHTML = "0"+ getLocalStorageBoys().length;
+    }else{
+        boysLength.innerHTML = getLocalStorageBoys().length;
+    }
     
 });
+
 
 // girls gender btn
 femaleGenderBtn.addEventListener("click", function () {
@@ -197,7 +175,6 @@ femaleGenderBtn.addEventListener("click", function () {
     };
 
     
-    // girls.push(caps(textField.value));
     addToLocalStorageGirls(caps(textField.value));
     displayGirls(getLocalStorageGirls());
     // console.log(boys);
@@ -205,41 +182,24 @@ femaleGenderBtn.addEventListener("click", function () {
     visibility(getLocalStorageGirls(),girlsClear);
 
     // check if the two arrays are equal
-    if (getLocalStorageBoys().length === getLocalStorageGirls().length) {
-        setTimeout(function () {
-            showStatus.innerHTML = `Everyone will have a prom partner`;
-            showStatus.style.visibility = "visible";
-        }, 0);
-
-        setTimeout(function () {
-            showStatus.style.visibility = "hidden";
-        }, 3000);
-
-        matchMembers.classList.add("showMatchMembers");
-        addNames.classList.add("shiftAdd");
-        bigBubbles.classList.remove("bigBubblesMargin");
-    } else {
-        setTimeout(function () {
-            showStatus.innerHTML = `Not everyone will have a prom partner`;
-            showStatus.style.visibility = "visible";
-        }, 0);
-
-        setTimeout(function () {
-            showStatus.style.visibility = "hidden";
-        }, 3000);
-        matchMembers.classList.remove("showMatchMembers");
-        addNames.classList.remove("shiftAdd");
-        bigBubbles.classList.add("bigBubblesMargin");
-    }
+    checkForEquality(getLocalStorageBoys().length,getLocalStorageGirls().length);
 
     textField.value = "";
     textField.focus();
-    girlsLength.innerHTML = getLocalStorageGirls().length;
+
+    if(getLocalStorageGirls().length>0 && getLocalStorageGirls().length <9){
+        girlsLength.innerHTML = "0" + getLocalStorageGirls().length;
+    }else{
+        girlsLength.innerHTML = getLocalStorageGirls().length;
+    }
+// practicing tenary operator
+// getLocalStorageGirls().length <9? girlsLength.innerHTML = "0" + getLocalStorageGirls().length:girlsLength.innerHTML = getLocalStorageGirls().length;
+   
 });
 
 
 
-
+// **** display functions and Match Fucns*****
 
 // Boys display fuc
 
@@ -253,7 +213,7 @@ function displayBoys(array) {
     displayTheBoys = displayTheBoys.join(" ");
     boysList.innerHTML = displayTheBoys;
 
-    let item2 = getLocalStorageGirls();
+   
     let deleteBoysBtns = document.querySelectorAll(".DeleteBtnBoys");
     deleteBoysBtns.forEach(function(deleteBoysBtn){
         deleteBoysBtn.addEventListener("click",function(e){
@@ -267,34 +227,15 @@ function displayBoys(array) {
        
 
         //  check for equality
-        if (item.length === item2.length) {
-            setTimeout(function () {
-                showStatus.innerHTML = `Everyone will have a prom partner`;
-                showStatus.style.visibility = "visible";
-            }, 0);
+        checkForEquality(getLocalStorageBoys().length,getLocalStorageGirls().length);
 
-            setTimeout(function () {
-                showStatus.style.visibility = "hidden";
-            }, 3000);
-            matchMembers.classList.add("showMatchMembers");
-            addNames.classList.add("shiftAdd");
-            bigBubbles.classList.remove("bigBubblesMargin");
-        } else {
-            setTimeout(function () {
-                showStatus.innerHTML = `Not everyone will have a prom partner`;
-                showStatus.style.visibility = "visible";
-            }, 0);
-
-            setTimeout(function () {
-                showStatus.style.visibility = "hidden";
-            }, 3000);
-            matchMembers.classList.remove("showMatchMembers");
-            addNames.classList.remove("shiftAdd");
-            bigBubbles.classList.add("bigBubblesMargin");
+        if(item.length>0 && item.length <9){   
+            boysLength.innerHTML = "0"+ item.length;
+        }else{
+            boysLength.innerHTML = item.length;
         }
 
-        boysLength.innerHTML = item.length;
-        girlsLength.innerHTML = item2.length;
+       
         visibility(item,boysClear);
 });
 });
@@ -303,55 +244,9 @@ function displayBoys(array) {
 
  
 
-//     // delete fuc
-//     deleteBoysBtns.forEach(function (deleteBoysBtn) {
-//         deleteBoysBtn.addEventListener("click", function (e) {
-//             let deleteItem = e.currentTarget.parentElement.parentElement.children[0].children[0].innerHTML;
-//             // console.log(deleteItem);
-//             // console.log(boys.indexOf(deleteItem));
-//             let index = getLocalStorageBoys().indexOf(deleteItem);
-//             getLocalStorageBoys().splice(index, 1);
-//             displayBoys(getLocalStorageBoys());
-//             boysLength.innerHTML = getLocalStorageBoys().length;
-//             // remove from local storage
-           
-
-//             //check for equality
-//             if (getLocalStorageBoys().length === girls.length) {
-//                 setTimeout(function () {
-//                     showStatus.innerHTML = `Everyone will have a prom partner`;
-//                     showStatus.style.visibility = "visible";
-//                 }, 0);
-
-//                 setTimeout(function () {
-//                     showStatus.style.visibility = "hidden";
-//                 }, 3000);
-//                 matchMembers.classList.add("showMatchMembers");
-//                 addNames.classList.add("shiftAdd");
-//                 bigBubbles.classList.remove("bigBubblesMargin");
-//             } else {
-//                 setTimeout(function () {
-//                     showStatus.innerHTML = `Not everyone will have a prom partner`;
-//                     showStatus.style.visibility = "visible";
-//                 }, 0);
-
-//                 setTimeout(function () {
-//                     showStatus.style.visibility = "hidden";
-//                 }, 3000);
-//                 matchMembers.classList.remove("showMatchMembers");
-//                 addNames.classList.remove("shiftAdd");
-//                 bigBubbles.classList.add("bigBubblesMargin");
-//             }
-
-//         });
-//     });
- 
-
-
-
 // Girls display fuc
 function displayGirls(array) {
-    let item = getLocalStorageBoys();
+   
     let displayFemales = array.map(function (item) {
         return ` <div class="girlsContent">
         <p><span>${item}</span> <i class="fa-solid fa-trash DeleteGirlsBtn"></i></p>   
@@ -373,86 +268,22 @@ function displayGirls(array) {
             displayGirls(item2);
 
            //  check for equality 
-            if (item.length === item.length) {
-                setTimeout(function () {
-                    showStatus.innerHTML = `Everyone will have a prom partner`;
-                    showStatus.style.visibility = "visible";
-                }, 0);
+           checkForEquality(getLocalStorageBoys().length,getLocalStorageGirls().length);
 
-                setTimeout(function () {
-                    showStatus.style.visibility = "hidden";
-                }, 3000);
-                matchMembers.classList.add("showMatchMembers");
-                addNames.classList.add("shiftAdd");
-                bigBubbles.classList.remove("bigBubblesMargin");
-            } else {
-                setTimeout(function () {
-                    showStatus.innerHTML = `Not everyone will have a prom partner`;
-                    showStatus.style.visibility = "visible";
-                }, 0);
-
-                setTimeout(function () {
-                    showStatus.style.visibility = "hidden";
-                }, 3000);
-                matchMembers.classList.remove("showMatchMembers");
-                addNames.classList.remove("shiftAdd");
-                bigBubbles.classList.add("bigBubblesMargin");
+            if(item2.length>0 && item2.length <9){   
+                girlsLength.innerHTML = "0"+ item2.length;
+            }else{
+                girlsLength.innerHTML = item2.length;
             }
 
-            boysLength.innerHTML = item.length;
-            girlsLength.innerHTML = item2.length;
+             
             visibility(item2,girlsClear);
  });
-    
-    // let deleteGirlsBtns = document.querySelectorAll(".DeleteGirlsBtn");
-
-    // // delete fuc
-    // deleteGirlsBtns.forEach(function (deleteGirlsBtn) {
-    //     deleteGirlsBtn.addEventListener("click", function (e) {
-    //         let deleteItem = e.currentTarget.parentElement.parentElement.children[0].children[0].innerHTML;
-    //         //console.log(boys.indexOf(deleteItem));
-    //         let index = girls.indexOf(deleteItem);
-    //         girls.splice(index, 1);
-    //         displayGirls(girls);
-    //         // update number
-    //         girlsLength.innerHTML = girls.length;
-    //         // check for equality 
-    //         if (getLocalStorageBoys().length === girls.length) {
-    //             setTimeout(function () {
-    //                 showStatus.innerHTML = `Everyone will have a prom partner`;
-    //                 showStatus.style.visibility = "visible";
-    //             }, 0);
-
-    //             setTimeout(function () {
-    //                 showStatus.style.visibility = "hidden";
-    //             }, 3000);
-    //             matchMembers.classList.add("showMatchMembers");
-    //             addNames.classList.add("shiftAdd");
-    //             bigBubbles.classList.remove("bigBubblesMargin");
-    //         } else {
-    //             setTimeout(function () {
-    //                 showStatus.innerHTML = `Not everyone will have a prom partner`;
-    //                 showStatus.style.visibility = "visible";
-    //             }, 0);
-
-    //             setTimeout(function () {
-    //                 showStatus.style.visibility = "hidden";
-    //             }, 3000);
-    //             matchMembers.classList.remove("showMatchMembers");
-    //             addNames.classList.remove("shiftAdd");
-    //             bigBubbles.classList.add("bigBubblesMargin");
-    //         }
-
-    //     });
-
-    
+      
     });
 }
 
-// random fuc
-function random(array) {
-    return Math.floor(Math.random() * array.length);
-}
+
 
 // Match Couples
 
@@ -482,8 +313,17 @@ matchMembers.addEventListener("click", function () {
     displayHistory(getLocalStorageHistory());
     displayBoys(item);
     displayGirls(item2);
-    boysLength.innerHTML = item.length;
-    girlsLength.innerHTML = item2.length;
+    if(item.length>0 && item.length <9){   
+        boysLength.innerHTML = "0"+ item.length;
+    }else{
+        boysLength.innerHTML = item.length;
+    }
+    
+    if(item2.length>0 && item2.length <9){   
+        girlsLength.innerHTML = "0"+ item2.length;
+    }else{
+        girlsLength.innerHTML = item2.length;
+    }
     localStorage.setItem("boys",JSON.stringify(item));
     localStorage.setItem("girls",JSON.stringify(item2));
     visibility(getLocalStorageHistory(),historyClear);
@@ -502,17 +342,11 @@ function displayHistory(array) {
     displayMatchUpHistory.innerHTML = history;
 }
 
-//function to change string to caps
-
-function caps(string) {
-    // var string = "quincy";
-    return string[0].toUpperCase() + string.slice(1);
-}
-
-caps("eel");
 
 
-// ******* storage fuc *******
+// ****** Local Storage  ********
+
+// storage fucs
 
 // add to local storage boys
 
@@ -572,6 +406,53 @@ function getLocalStorageHistory(){
 
 }
 
+
+
+
+
+// ****Event Listeners******
+
+// events for btns
+
+boysClear.addEventListener("click",function(){
+    localStorage.removeItem("boys");
+    displayBoys(getLocalStorageBoys());
+    boysLength.innerHTML = getLocalStorageBoys().length;
+    checkForEquality(getLocalStorageBoys().length,getLocalStorageGirls().length);
+    boysClear.style.visibility = "hidden";
+
+});
+
+girlsClear.addEventListener("click",function(){
+    localStorage.removeItem("girls");
+    displayGirls(getLocalStorageGirls());
+    girlsLength.innerHTML = getLocalStorageGirls().length;
+    checkForEquality(getLocalStorageBoys().length,getLocalStorageGirls().length);
+    girlsClear.style.visibility = "hidden";
+});
+
+historyClear.addEventListener("click",function(){
+    localStorage.removeItem("history");
+    displayHistory(getLocalStorageHistory());
+    historyClear.style.visibility = "hidden";
+});
+
+// ***** Functions *******
+
+// random fuc
+function random(array) {
+    return Math.floor(Math.random() * array.length);
+}
+
+//function to change string to caps
+
+function caps(string) {
+    // var string = "quincy";
+    return string[0].toUpperCase() + string.slice(1);
+}
+
+caps("eel");
+
 // visibility for btns
 function visibility(value,btn){
     if(value.length > 0){
@@ -581,22 +462,45 @@ function visibility(value,btn){
     } 
 }
 
-// events for btns
+// check for equality func
+function checkForEquality(value1,value2){
+    //  check for equality
+    if (value1 === value2 && value1 > 0 && value2) {
+       setTimeout(function () {
+           showStatus.innerHTML = `Everyone will have a prom partner`;
+           showStatus.style.visibility = "visible";
+       }, 0);
 
-boysClear.addEventListener("click",function(){
-    localStorage.removeItem("boys");
-    displayBoys(getLocalStorageBoys());
-    boysClear.style.visibility = "hidden";
-});
+       setTimeout(function () {
+           showStatus.style.visibility = "hidden";
+       }, 3000);
+       matchMembers.classList.add("showMatchMembers");
+       addNames.classList.add("shiftAdd");
+       bigBubbles.classList.remove("bigBubblesMargin");
+   } else {
+       setTimeout(function () {
+           showStatus.innerHTML = `Not everyone will have a prom partner`;
+           showStatus.style.visibility = "visible";
+       }, 0);
 
-girlsClear.addEventListener("click",function(){
-    localStorage.removeItem("girls");
-    displayGirls(getLocalStorageGirls());
-    girlsClear.style.visibility = "hidden";
-});
+       setTimeout(function () {
+           showStatus.style.visibility = "hidden";
+       }, 3000);
+       matchMembers.classList.remove("showMatchMembers");
+       addNames.classList.remove("shiftAdd");
+       bigBubbles.classList.add("bigBubblesMargin");
+   }
+}
 
-historyClear.addEventListener("click",function(){
-    localStorage.removeItem("history");
-    displayHistory(getLocalStorageHistory());
-    historyClear.style.visibility = "hidden";
-});
+// check for equality func 2
+function checkForEquality2(value1,value2){
+    if (value1 === value2 && value1 > 0 && value2) {
+
+        matchMembers.classList.add("showMatchMembers");
+        addNames.classList.add("shiftAdd");
+    } else {
+
+        matchMembers.classList.remove("showMatchMembers");
+        addNames.classList.remove("shiftAdd");
+    }
+}
